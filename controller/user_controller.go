@@ -1,7 +1,9 @@
 package controller
 
 import (
+	"fmt"
 	"gin_api_server/common"
+	"gin_api_server/dto"
 	"gin_api_server/model"
 	"gin_api_server/utils"
 	"github.com/gin-gonic/gin"
@@ -134,6 +136,21 @@ func Login(ctx *gin.Context) {
 		"message": "登录成功",
 		"data": gin.H{
 			"token": token,
+		},
+	})
+}
+
+// GetUserProfile 获取用户信息
+// 获取用户信息 应该是已经通过验证的, 是存在于ctx内的
+func GetUserProfile(ctx *gin.Context) {
+	user, _ := ctx.Get("user")
+	fmt.Println("获取用户信息user", user)
+	fmt.Println("获取用户信息user dto", user.(model.User))
+	ctx.JSON(http.StatusOK, gin.H{
+		"code":    200,
+		"message": "获取成功",
+		"data": gin.H{
+			"userProfile": dto.ConvertUserDto(user),
 		},
 	})
 }
