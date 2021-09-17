@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"gin_api_server/common"
 	"gin_api_server/routes"
 	"github.com/gin-gonic/gin"
@@ -10,8 +9,10 @@ import (
 )
 
 func main() {
+	// 日志颜色化
 	gin.ForceConsoleColor()
 
+	// 连接数据库
 	db := common.InitDB()
 	defer func(db *gorm.DB) {
 		err := db.Close()
@@ -19,10 +20,13 @@ func main() {
 
 		}
 	}(db)
+
+	// 初始化gin引擎
 	r := gin.Default()
+
+	// 注册路由
 	r = routes.UserRoutes(r)
 
-	if err := r.Run(); err != nil {
-		fmt.Println("failed gin start:", err)
-	}
+	// 启动gin
+	panic(r.Run())
 }
