@@ -25,7 +25,8 @@ func main() {
 	r := gin.Default()
 
 	// 注册路由
-	r = routes.UserRoutes(r)
+	//r = routes.UserRoutes(r)
+	r = routes.HomeRouters(r)
 
 	// 启动gin
 	panic(r.Run())

@@ -3,7 +3,6 @@ package controller
 import (
 	"fmt"
 	"gin_api_server/common"
-	"gin_api_server/dto"
 	"gin_api_server/model"
 	"gin_api_server/utils"
 	"github.com/gin-gonic/gin"
@@ -149,8 +148,8 @@ func GetUserProfile(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"code":    200,
 		"message": "获取成功",
-		"data": gin.H{
-			"userProfile": dto.ConvertUserDto(user),
-		},
+		//"data": gin.H{
+		//	"userProfile": dto.ConvertUserDto(user),
+		//},
 	})
 }
